@@ -10,10 +10,10 @@ import com.intact.rx.rate.limiter.id.MasterCacheId;
 public class RxDefault {
     private static final AtomicReference<DomainCacheId> defaultRxCommandDomainCacheId = new AtomicReference<>(new DomainCacheId("RxCommand.DefaultRxCommandCacheId"));
 
-    private static final CacheHandle globalCircuitCacheHandle = CacheHandle.create(defaultRxCommandDomainCacheId.get(), MasterCacheId.create("Rx.globalCircuitBreakerScope"), RateLimiterPolicy.class);
+    private static final CacheHandle globalRateLimiterCacheHandle = CacheHandle.create(getDefaultRxCommandDomainCacheId(), MasterCacheId.create("Rx.globalRateLimiterScope"), RateLimiterPolicy.class);
 
     public static CacheHandle getGlobalRateLimiterCacheHandle() {
-        return globalCircuitCacheHandle;
+        return globalRateLimiterCacheHandle;
     }
 
     public static DomainCacheId getDefaultRxCommandDomainCacheId() {
